@@ -13,6 +13,23 @@ def selection_sort(list1):
 
     return list1
 
+def insertion_sort(list1):
+
+    for i in range(1, len(list1)):
+
+        j = i
+
+        while j>0 and list1[j-1] > list1[j]:
+            list1[j], list1[j-1] = list1[j-1], list1[j]
+            j -= 1
+
+    return list1
+
+def bubble_sort(list1):
+    #todo
+    return list1
+
 if __name__ == '__main__':
     arr=[2,8,6,4,1,3]
-    print(selection_sort(arr))
+    print('selection_sort',selection_sort(arr))
+    print('insertion_sort',insertion_sort(arr))
