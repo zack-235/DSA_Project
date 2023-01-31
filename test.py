@@ -7,88 +7,120 @@ def on_button_click(algo_type):
     text = entry.get()
     if text=="":
         label.config(text="Enter only numbers with comma as seperator");
+        return
+    elif search_key=="" and (algo_type == 'linear_s' or algo_type == 'binary_s'):
+        label.config(text="You must enter a value to search");
+        return
     else:
-        numbers= text.split(",");
+        numbers=text.split(",");
 
     numbers_arr=[];
     for i in range(len(numbers)):
         numbers_arr.append(eval(numbers[i]));
-    print(algo_type, numbers_arr)
 
     if algo_type == 'selection':
-        sorted_numbers = selection_sort(numbers_arr)
+        result = selection_sort(numbers_arr)
+        result = f'Sorted Array: {str(numbers_arr)}'
     elif algo_type == 'insertion':
-        sorted_numbers = insertion_sort(numbers_arr)
+        result = insertion_sort(numbers_arr)
+        result = f'Sorted Array: {str(numbers_arr)}'
     elif algo_type == 'bubble':
-        sorted_numbers = bubble_sort(numbers_arr)
+        result = bubble_sort(numbers_arr)
+        result = f'Sorted Array: {str(numbers_arr)}'
     elif algo_type == 'quick':
-        sorted_numbers = quick_sort(numbers_arr)
-    label.config(text=sorted_numbers)
+        result = quick_sort(numbers_arr)
+        result = f'Sorted Array: {str(numbers_arr)}'
+    elif algo_type == 'linear_s':
+        result = linear_search(eval(search_key), numbers_arr)
+        result = f'Found Index: {str(numbers_arr)}'
+    elif algo_type == 'binary_s':
+        result = binary_search(eval(search_key), numbers_arr)
+        result = f'Found Index: {str(numbers_arr)}'
+    label.config(text=result)
 
+# main window settings
 root = tk.Tk()
-root.minsize(height=720, width=1280);
-root.title("Sorting");
-# root.config(bg="#820ecf")
+root.title("Sorting")
+# root.(height=720, width=1280)
+
+# styling
+root.tk.call("source", "azure.tcl")
+root.tk.call("set_theme", "light")
+
+frame = ttk.Frame(root)
+frame.pack(fill="both", expand=True)
 
 # Create an Entry widget
-entry = tk.Entry(root, highlightthickness=2, borderwidth=1)
-entry.config(width=50);
-entry.grid(row=0, column=0, padx=615, pady=100)
-# entry.config(background="red")    
+label_for_array = ttk.Label(frame, width=50, text="Enter array: (comma seperated)")
+label_for_array.grid(row=0, column=0, padx=10, pady=20)
+entry = ttk.Entry(frame, width=50)
+entry.grid(row=1, column=0, padx=10)
 
-key=tk.Entry(root,width=20)
-key.grid(row=0, column=1, padx=10, pady=100)
+label_for_key = ttk.Label(frame, width=30, text="Enter value to find:")
+label_for_key.grid(row=0, column=1, padx=10, pady=20)
+key=ttk.Entry(frame,width=30)
+key.grid(row=1, column=1, padx=10)
 
 # Create a Button widget
-button1 = tk.Button(
-    root,
+button1 = ttk.Button(
+    frame,
     text="Selection Sort!",
     command=(lambda: on_button_click('selection')),
     width=25
 )
-button1.grid(row=2, column=0, padx=20, pady=20)
+button1.grid(row=3, column=0, padx=20, pady=20)
 
-button2 = tk.Button(
-    root,
+button2 = ttk.Button(
+    frame,
     text="Insertion Sort!",
     command=(lambda: on_button_click('insertion')),
     width=25
 )
-button2.grid(row=3, column=0, padx=20, pady=20)
+button2.grid(row=4, column=0, padx=20, pady=20)
 
-button3 = tk.Button(
-    root,
+button3 = ttk.Button(
+    frame,
     text="Bubble Sort!",
     command=(lambda: on_button_click('bubble')),
     width=25
 )
-button3.grid(row=4, column=0, padx=20, pady=20)
+button3.grid(row=5, column=0, padx=20, pady=20)
 
-button4 = tk.Button(
-    root,
+button4 = ttk.Button(
+    frame,
     text="Quick Sort!",
     command=(lambda: on_button_click('quick')),
     width=25
 )
-button4.grid(row=5, column=0, padx=20, pady=20)
+button4.grid(row=6, column=0, padx=20, pady=20)
 
-button5=tk.Button(
-    root,
-    text="Bubble Sort!",
-    command=(lambda: on_button_click('li_search')),
+button5=ttk.Button(
+    frame,
+    text="Linear Search!",
+    command=(lambda: on_button_click('linear_s')),
     width=25
 )
+button5.grid(row=4, column=1, padx=5, pady=20)
 
-button5=tk.Button(
-    root,
-    text="Bubble Sort!",
-    command=(lambda: on_button_click('bi_search')),
+button6=ttk.Button(
+    frame,
+    text="Binary Search!",
+    command=(lambda: on_button_click('binary_s')),
     width=25
 )
-# button.bind("a", on_button_click);
+button6.grid(row=5, column=1, padx=5, pady=20)
 
-# Create a Label widget
-label = tk.Label(root, text="")
-label.grid(row=1, column=0, columnspan=2, padx=20, pady=20)
+# Label to show result
+label = ttk.Label(frame, text="Result will appear here...")
+label.grid(row=2, column=0, columnspan=2, padx=20, pady=30)
+
+footer_frame = ttk.Frame(root)
+footer_frame.pack(fill="both", expand=True)
+footer_label = ttk.Label(
+    footer_frame,
+    text="Made with ❤️ by Abdul Rehman Daniyal, Abdul Moiz Siddiqui & Muhammad Hamza Pervez.",
+    anchor='center'
+)
+footer_label.grid(row=0, column=0, padx=50, pady=10)
 
 root.mainloop()
