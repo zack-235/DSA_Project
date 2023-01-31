@@ -20,22 +20,22 @@ def on_button_click(algo_type):
 
     if algo_type == 'selection':
         result = selection_sort(numbers_arr)
-        result = f'Sorted Array: {str(numbers_arr)}'
+        result = f'Sorted Array: {str(result)}'
     elif algo_type == 'insertion':
         result = insertion_sort(numbers_arr)
-        result = f'Sorted Array: {str(numbers_arr)}'
+        result = f'Sorted Array: {str(result)}'
     elif algo_type == 'bubble':
         result = bubble_sort(numbers_arr)
-        result = f'Sorted Array: {str(numbers_arr)}'
+        result = f'Sorted Array: {str(result)}'
     elif algo_type == 'quick':
         result = quick_sort(numbers_arr)
-        result = f'Sorted Array: {str(numbers_arr)}'
+        result = f'Sorted Array: {str(result)}'
     elif algo_type == 'linear_s':
         result = linear_search(eval(search_key), numbers_arr)
-        result = f'Found Index: {str(numbers_arr)}'
+        result = f'Found Index: {str(result)}'
     elif algo_type == 'binary_s':
         result = binary_search(eval(search_key), numbers_arr)
-        result = f'Found Index: {str(numbers_arr)}'
+        result = f'Found Index: {str(result)}'
     label.config(text=result)
 
 # main window settings
