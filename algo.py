@@ -15,49 +15,46 @@ def selection_sort(list1, render):
 
     return list2
 
-def quick_sort(list1):
-    if len(list1) <= 1:
-        return list1
+def quick_sort(list1, render):
+    list2 = list1
+    if len(list2) <= 1:
+        return list2
 
-    pivot = list1[len(list1) // 2]
+    pivot = list2[len(list2) // 2]
     middle=list()
     left=list()
     right=list()
 
-    for i in range(len(list1)):
-        if list1[i]<pivot:
-            left.append(list1[i])
-
-        if list1[i]>pivot:
-            right.append(list1[i])
-            
-
-        if list1[i]==pivot:
-            middle.append(list1[i])
-            
-
+    for i in range(len(list2)):
+        if list2[i]<pivot:
+            left.append(list2[i])
+        if list2[i]>pivot:
+            right.append(list2[i])
+        if list2[i]==pivot:
+            middle.append(list2[i])
+        render(list2)
     return quick_sort(left)+middle+quick_sort(right)
 
-def insertion_sort(list1):
-
-    for i in range(1, len(list1)):
-
+def insertion_sort(list1, render):
+    list2 = list1
+    for i in range(1, len(list2)):
         j = i
-
-        while j>0 and list1[j-1] > list1[j]:
-            list1[j], list1[j-1] = list1[j-1], list1[j]
+        while j>0 and list2[j-1] > list2[j]:
+            list2[j], list2[j-1] = list2[j-1], list2[j]
             j -= 1
+            render(list2)
+    return list2
 
-    return list1
-
-def bubble_sort(list1):
-    for i in range(0,len(list1)):
-        for j in range(0, len(list1)-1):
-            if list1[j] > list1[j + 1]:
-                c=list1[j]
-                list1[j]=list1[j+1]
-                list1[j+1]=c
-    return list1
+def bubble_sort(list1, render):
+    list2 = list1
+    for i in range(0,len(list2)):
+        for j in range(0, len(list2)-1):
+            if list2[j] > list2[j + 1]:
+                c=list2[j]
+                list2[j]=list2[j+1]
+                list2[j+1]=c
+            render(list2)
+    return list2
 
 def reset(list1):
     list1.clear()
