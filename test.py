@@ -1,6 +1,45 @@
 import tkinter as tk
 from tkinter import ttk
 from algo import selection_sort, insertion_sort, bubble_sort, quick_sort, binary_search, linear_search, reset
+import time
+
+
+def render_list(frame, list1, delay=0):
+    for i, num in enumerate(list1):
+        box = ttk.Entry(frame, width=2, justify='center')
+        box.insert(0, num)
+        box.config(state='disabled')
+        box.grid(row=0, column=i, padx=5)
+    root.update_idletasks()
+    if (delay > 0): time.sleep(delay)
+    return
+
+def visualizale(algo_type, numbers_arr, search_key):
+    visualization_window = tk.Toplevel(root)
+    visualization_window.title('Visualization')
+    frame = ttk.Frame(visualization_window)
+    frame.grid(row=0, column=0, padx=20, pady=20)
+
+    render_list(frame, numbers_arr)
+    if algo_type == 'selection':
+        result = selection_sort(numbers_arr, (lambda rl: render_list(frame, rl, 1)))
+        result = f'Sorted Array: {str(result)}'
+    elif algo_type == 'insertion':
+        result = insertion_sort(numbers_arr, (lambda rl: render_list(frame, rl, 1)))
+        result = f'Sorted Array: {str(result)}'
+    elif algo_type == 'bubble':
+        result = bubble_sort(numbers_arr, (lambda rl: render_list(frame, rl, 1)))
+        result = f'Sorted Array: {str(result)}'
+    elif algo_type == 'quick':
+        result = quick_sort(numbers_arr, (lambda rl: render_list(frame, rl, 1)))
+        result = f'Sorted Array: {str(result)}'
+    elif algo_type == 'linear_s':
+        result = linear_search(eval(search_key), numbers_arr)
+        result = f'Found Index: {str(result)}'
+    elif algo_type == 'binary_s':
+        result = binary_search(eval(search_key), numbers_arr)
+        result = f'Found Index: {str(result)}'
+    label.config(text=result)
 
 def on_button_click(algo_type):
     search_key=key.get()
@@ -18,30 +57,19 @@ def on_button_click(algo_type):
     for i in range(len(numbers)):
         numbers_arr.append(eval(numbers[i]));
 
-    if algo_type == 'selection':
-        result = selection_sort(numbers_arr)
-        result = f'Sorted Array: {str(result)}'
-    elif algo_type == 'insertion':
-        result = insertion_sort(numbers_arr)
-        result = f'Sorted Array: {str(result)}'
-    elif algo_type == 'bubble':
-        result = bubble_sort(numbers_arr)
-        result = f'Sorted Array: {str(result)}'
-    elif algo_type == 'quick':
-        result = quick_sort(numbers_arr)
-        result = f'Sorted Array: {str(result)}'
-    elif algo_type == 'reset':
+    if algo_type == 'reset':
         reset(numbers_arr)
         result = 'Result will appear here...'
+        label.config(text=result)
         entry.config(text="")
         key.config(text="")
-    elif algo_type == 'linear_s':
-        result = linear_search(eval(search_key), numbers_arr)
-        result = f'Found Index: {str(result)}'
-    elif algo_type == 'binary_s':
-        result = binary_search(eval(search_key), numbers_arr)
-        result = f'Found Index: {str(result)}'
-    label.config(text=result)
+    else:
+        visualizale(algo_type, numbers_arr, search_key)
+
+
+#################################
+#### GUI SETUP               ####
+#################################
 
 # main window settings
 root = tk.Tk()
