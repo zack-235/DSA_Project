@@ -14,7 +14,7 @@ def render_list(frame, list1, delay=0):
     if (delay > 0): time.sleep(delay)
     return
 
-def visualizale(algo_type, numbers_arr):
+def visualizale(algo_type, numbers_arr, search_key):
     visualization_window = tk.Toplevel(root)
     visualization_window.title('Visualization')
     frame = ttk.Frame(visualization_window)
@@ -62,7 +62,7 @@ def on_button_click(algo_type):
     for i in range(len(numbers)):
         numbers_arr.append(eval(numbers[i]));
 
-    visualizale(algo_type, numbers_arr)
+    visualizale(algo_type, numbers_arr, search_key)
 
 
 #################################
