@@ -51,7 +51,16 @@ def insertion_sort(list1):
     return list1
 
 def bubble_sort(list1):
-    #todo
+    for i in range(0,len(list1)):
+        for j in range(0, len(list1)-1):
+            if list1[j] > list1[j + 1]:
+                c=list1[j]
+                list1[j]=list1[j+1]
+                list1[j+1]=c
+    return list1
+
+def reset(list1):
+    list1.clear()
     return list1
 
 def linear_search(key, list1):
