@@ -17,6 +17,7 @@ def selection_sort(list1, render):
 
 def quick_sort(list1, render):
     list2 = list1
+    render(list2)
     if len(list2) <= 1:
         return list2
 
@@ -32,8 +33,7 @@ def quick_sort(list1, render):
             right.append(list2[i])
         if list2[i]==pivot:
             middle.append(list2[i])
-        render(list2)
-    return quick_sort(left)+middle+quick_sort(right)
+    return quick_sort(left, render)+middle+quick_sort(right, render)
 
 def insertion_sort(list1, render):
     list2 = list1

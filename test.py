@@ -33,11 +33,6 @@ def visualizale(algo_type, numbers_arr, search_key):
     elif algo_type == 'quick':
         result = quick_sort(numbers_arr, (lambda rl: render_list(frame, rl, 1)))
         result = f'Sorted Array: {str(result)}'
-    elif algo_type == 'reset':
-        reset(numbers_arr)
-        result = 'Result will appear here...'
-        entry.config(text="")
-        key.config(text="")
     elif algo_type == 'linear_s':
         result = linear_search(eval(search_key), numbers_arr)
         result = f'Found Index: {str(result)}'
@@ -62,7 +57,14 @@ def on_button_click(algo_type):
     for i in range(len(numbers)):
         numbers_arr.append(eval(numbers[i]));
 
-    visualizale(algo_type, numbers_arr, search_key)
+    if algo_type == 'reset':
+        reset(numbers_arr)
+        result = 'Result will appear here...'
+        label.config(text=result)
+        entry.config(text="")
+        key.config(text="")
+    else:
+        visualizale(algo_type, numbers_arr, search_key)
 
 
 #################################
