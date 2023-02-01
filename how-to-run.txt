@@ -1,0 +1,9 @@
+#########################
+#     HOW TO RUN        #
+#########################
+
+STEP 1: Download the "code.zip" file.
+STEP 2: Extract the "code.zip" file.
+STEP 3: Open Command Prompt.
+STEP 4: Navigate to the extracted folder.
+STEP 5: Run command: "python main.py"
