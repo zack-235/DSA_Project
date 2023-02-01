@@ -1,21 +1,24 @@
-def selection_sort(list1):
 
-    for i in range(len(list1)):
+def selection_sort(list1, render):
+    list2 = list1
+    for i in range(len(list2)):
 
         min=i
 
-        for j in range(i+1,len(list1)):
+        for j in range(i+1,len(list2)):
 
-            if list1[min]>list1[j]:
+            if list2[min]>list2[j]:
                 min=j
 
-        list1[i],list1[min]=list1[min],list1[i]
+        list2[i],list2[min]=list2[min],list2[i]
+        render(list2)
 
-    return list1
+    return list2
 
 def quick_sort(list1):
     if len(list1) <= 1:
         return list1
+
     pivot = list1[len(list1) // 2]
     middle=list()
     left=list()
