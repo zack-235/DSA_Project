@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from algo import selection_sort, insertion_sort, bubble_sort, quick_sort, binary_search, linear_search
+from algo import selection_sort, insertion_sort, bubble_sort, quick_sort, binary_search, linear_search, reset
 
 def on_button_click(algo_type):
     search_key=key.get()
@@ -30,6 +30,11 @@ def on_button_click(algo_type):
     elif algo_type == 'quick':
         result = quick_sort(numbers_arr)
         result = f'Sorted Array: {str(result)}'
+    elif algo_type == 'reset':
+        reset(numbers_arr)
+        result = 'Result will appear here...'
+        entry.config(text="")
+        key.config(text="")
     elif algo_type == 'linear_s':
         result = linear_search(eval(search_key), numbers_arr)
         result = f'Found Index: {str(result)}'
@@ -109,6 +114,14 @@ button6=ttk.Button(
     width=25
 )
 button6.grid(row=5, column=1, padx=5, pady=20)
+
+reset_button=ttk.Button(
+    frame,
+    text="Reset",
+    command=(lambda: on_button_click('reset')),
+    width=25
+)
+reset_button.grid(row=6, column=1, padx=5, pady=20)
 
 # Label to show result
 label = ttk.Label(frame, text="Result will appear here...")
